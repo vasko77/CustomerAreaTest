@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   }
 
   login(): void {
-    this.authenticationService.login( this.user ).subscribe(
+    this.authenticationService.login(this.user).subscribe(
       resp => this.userAuth = resp
     );
   }
