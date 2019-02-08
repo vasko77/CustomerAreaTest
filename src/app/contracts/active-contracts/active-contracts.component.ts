@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ContractsDataService } from '../services/contracts-data.service';
-import { Contract } from '../models/contract';
+import { IContract } from '../models/contract';
 
 @Component({
   selector: 'app-active-contracts',
@@ -9,7 +9,7 @@ import { Contract } from '../models/contract';
 })
 export class ActiveContractsComponent implements OnInit {
 
-  contracts: Contract[];
+  contracts: IContract[];
 
   constructor(private contractDataService: ContractsDataService) { }
 
@@ -19,7 +19,7 @@ export class ActiveContractsComponent implements OnInit {
   getContracts(): void {
     this.contractDataService.getActiveContracts().subscribe(
       resp => {
-        this.contracts = resp;
+        this.contracts = resp.Contracts;
         console.log( this.contracts );
       }
     );
