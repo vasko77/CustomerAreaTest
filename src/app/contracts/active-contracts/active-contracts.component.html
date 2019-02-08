@@ -1,11 +1,18 @@
-<h1>Active Contracts</h1>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Ενεργά Συμβόλαια</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
 
-<div class="flex-container">
-    <div *ngFor="let item of contracts" class="flex-item">
-        <app-contract-info [contract]="item">
+    <mat-spinner-button color="primary" [options]="btnOpts" (click)="getContracts()"></mat-spinner-button>
+
+    <div class="flex-container">
+
+      <div *ngFor="let contract of contracts" class="flex-item">
+        <app-contract-info [contract]="contract">
 
         </app-contract-info>
+      </div>
     </div>
-</div>
-
-<button (click)="getContracts()">Get Contracts</button>
+  </mat-card-content>
+</mat-card>

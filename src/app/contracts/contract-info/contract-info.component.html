@@ -1,4 +1,10 @@
-<div>
-  {{ contract.ContractKey }}
-  {{ contract.ProductDescritpion }}
-</div>
+<mat-card class="contract-card">
+  <mat-card-header>
+    <mat-card-title>{{ contract.ContractKey }}</mat-card-title>
+    <mat-card-subtitle>{{ contract.ExpirationDate | date:'d LLLL y' }}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+      <div>{{ contract.Branch}}</div>
+      <div>{{ contract.ProductDescritpion}}</div>
+  </mat-card-content>
+</mat-card>

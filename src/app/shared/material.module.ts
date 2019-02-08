@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { MatProgressButtonsModule } from 'mat-progress-buttons';
 
 import {
   MatAutocompleteModule,
@@ -70,6 +71,7 @@ import {
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
+    MatProgressButtonsModule
   ],
   exports: [
     MatAutocompleteModule,
@@ -103,7 +105,8 @@ import {
     MatTableModule,
     MatTabsModule,
     MatToolbarModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatProgressButtonsModule
   ]
 })
 export class MaterialModule { }

@@ -5,6 +5,7 @@ import { ContractsRoutingModule } from './contracts-routing.module';
 import { ActiveContractsComponent } from './active-contracts/active-contracts.component';
 import { ContractsDataService } from './services/contracts-data.service';
 import { ContractInfoComponent } from './contract-info/contract-info.component';
+import { MaterialModule } from '../shared/material.module';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { ContractInfoComponent } from './contract-info/contract-info.component';
   ],
   imports: [
     CommonModule,
-    ContractsRoutingModule
+    ContractsRoutingModule,
+    MaterialModule
   ],
   providers: [
     ContractsDataService
