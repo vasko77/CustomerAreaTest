@@ -8,7 +8,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'active-contracts', component: ActiveContractsComponent },
   { path: 'not-found', component: NotFoundComponent },
-  { path: '**', redirectTo: 'not-found' }
+  // { path: '**', redirectTo: 'not-found' }
 ];
 
 @NgModule({
