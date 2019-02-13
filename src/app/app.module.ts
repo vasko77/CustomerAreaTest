@@ -20,6 +20,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { ContractsModule } from './contracts/contracts.module';
 import { LoginComponent } from './login/login.component';
 import { CoreModule } from './core/core.module';
+import { HomeComponent } from './home/home.component';
 
 export function loadConfig(oidcConfigService: OidcConfigService) {
   console.log('APP_INITIALIZER STARTING');
@@ -32,7 +33,8 @@ export function loadConfig(oidcConfigService: OidcConfigService) {
   declarations: [
     AppComponent,
     NotFoundComponent,
-    LoginComponent
+    LoginComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

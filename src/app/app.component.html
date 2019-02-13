@@ -4,10 +4,9 @@
     <mat-toolbar-row>
       <span>Customer Area</span>
       <span class="spacer"></span>
-      <a routerLink="/active-contracts" mat-button>Ενεργά Συμβόλαια</a>
-      <a routerLink="/login" mat-button>Login Custom</a>
-      <button (click)="login()" mat-button>Login Azure</button>
-      <button (click)="logout()" mat-button>Logout Azure</button>
+      <a routerLink="/active-contracts" mat-button *ngIf="userAuth.isAuthenticated" >Ενεργά Συμβόλαια</a>
+      <a routerLink="/login" mat-button *ngIf="!userAuth.isAuthenticated">Login</a>
+      <button (click)="logout()" mat-button *ngIf="userAuth.isAuthenticated">Logout {{ userAuth.userName }}</button>
     </mat-toolbar-row>
   </mat-toolbar>
 

@@ -4,37 +4,33 @@ import { AppUser } from '../models/app-user';
 import { AppUserAuth } from '../models/app-user-auth';
 import { HttpClient } from '@angular/common/http';
 import { IAdb2cResponse } from '../models/adb2c-response';
+import { tap, map } from 'rxjs/operators';
 
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class AuthenticationService {
 
   autheticatedUser: AppUserAuth = new AppUserAuth();
 
   constructor(private http: HttpClient) { }
 
-  login( user: AppUser ): Observable<AppUserAuth> {
+  login(user: AppUser): Observable<AppUserAuth> {
 
     this.resetAuthenticationUser();
 
     // tslint:disable-next-line:max-line-length
-    const url = `https://login.microsoftonline.com/eurob2c.onmicrosoft.com/oauth2/v2.0/token?p=B2C_1_resource-owner&grant_type=password&client_id=668f01f7-aa44-41b0-9d99-4d7517c44296&username=vtsionis@hotmail.com&password=erbtest5%&scope=https://eurob2c.onmicrosoft.com/tasks/read https://eurob2c.onmicrosoft.com/tasks/write offline_access`;
+    const url = `https://nettestna.eurolife.gr/CAVasko/api/login/GetToken?UserName=${user.userName}&password=${user.password}`;
 
-    this.http.post( url, null ).subscribe(
-      (resp: IAdb2cResponse) => {
+    return this.http.get<IAdb2cResponse>(url).pipe(
+      map(resp => {
         this.autheticatedUser.userName = user.userName;
-        this.autheticatedUser.isAuthenticated = true;
         this.autheticatedUser.bearerToken = resp.access_token;
+        this.autheticatedUser.refreshToken = resp.refresh_token;
+        this.autheticatedUser.expriresIn = resp.expires_in;
+        this.autheticatedUser.isAuthenticated = resp.access_token ? true : false;
+        return this.autheticatedUser;
       }
-    );
-
-    Object.assign( this.autheticatedUser, {} );
-
-    if (this.autheticatedUser.userName !== '') {
-      localStorage.setItem('bearerToken', this.autheticatedUser.bearerToken);
-    }
-
-    return of<AppUserAuth>( this.autheticatedUser );
+      ));
 
   }
 
